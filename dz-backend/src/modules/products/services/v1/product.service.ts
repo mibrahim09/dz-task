@@ -8,4 +8,6 @@ export abstract class ProductServiceV1 {
   abstract findAll(): Promise<any>;
 
   abstract syncProducts(results: SyncedProduct[]): Promise<void>;
+
+  abstract markStaleProducts(): Promise<void>;
 }

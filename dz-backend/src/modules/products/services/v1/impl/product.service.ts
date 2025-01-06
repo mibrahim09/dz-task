@@ -17,6 +17,10 @@ export class ProductServiceV1Impl extends ProductServiceV1 {
     return this.productDbSyncer.syncProducts(results);
   }
 
+  async markStaleProducts(): Promise<void> {
+    return this.repository.markStaleProducts();
+  }
+
   async findAll(): Promise<any> {
     return this.repository.findAll();
   }

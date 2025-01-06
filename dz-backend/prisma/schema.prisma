@@ -23,6 +23,8 @@ model product {
   ProviderProduct provider_product[]
   createdAt       DateTime?          @default(now())
   updatedAt       DateTime?          @updatedAt
+  isStale         Boolean?           @default(false)
+  product_changes product_changes[]
 }
 
 model provider_product {
@@ -45,4 +47,13 @@ model provider {
   createdAt       DateTime?          @default(now())
   updatedAt       DateTime?          @updatedAt
   ProviderProduct provider_product[]
+}
+
+model product_changes {
+  id        Int       @id @default(autoincrement())
+  product   product?  @relation(fields: [productId], references: [id])
+  productId Int?
+  changes   Json
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 }
