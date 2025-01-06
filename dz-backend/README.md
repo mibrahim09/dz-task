@@ -18,6 +18,10 @@
 
 3. (Optional) **Configure cron job settings** in the `.env` file if necessary.
 
+4. You can also find the Swagger API docs here
+    ```
+   http://localhost:5000/docs
+   ```
 ---
 
 That's it! You can now run the application and interact with the database.
