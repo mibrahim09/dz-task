@@ -6,4 +6,5 @@ export class SyncedProduct {
   currency: string;
   availability: 'AVAILABLE' | 'UNAVAILABLE';
   lastUpdated: Date;
+  providerName: string;
 }

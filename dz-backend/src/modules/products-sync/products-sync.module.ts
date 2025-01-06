@@ -1,28 +1,29 @@
 import { Module } from '@nestjs/common';
-import { ProductsSyncService } from './services/products-sync.service';
-import { ProductsSyncServiceImpl } from './services/impl/products-sync.service';
 import { PROVIDER_1_KEY, PROVIDER_2_KEY, PROVIDER_3_KEY } from './constants/provider';
-import { Provider1Adapter } from './adapters/impl/provider-1.adapter';
-import { Provider2Adapter } from './adapters/impl/provider-2.adapter';
-import { Provider3Adapter } from './adapters/impl/provider-3.adapter';
+import { ProductsSyncServiceV1Impl } from './services/v1/impl/products-sync.service';
+import { ProductsSyncServiceV1 } from './services/v1/products-sync-service-v1.service';
+import { Provider1AdapterV1 } from './adapters/v1/impl/provider1-adapter.v1';
+import { Provider2AdapterV1 } from './adapters/v1/impl/provider2-adapter.v1';
+import { Provider3AdapterV1 } from './adapters/v1/impl/provider3-adapter.v1';
+import { ProductsModule } from '../products/products.module';
 
 @Module({
-  imports: [],
+  imports: [ProductsModule],
   providers: [
-    { provide: ProductsSyncService, useClass: ProductsSyncServiceImpl },
+    { provide: ProductsSyncServiceV1, useClass: ProductsSyncServiceV1Impl },
     {
       provide: PROVIDER_1_KEY,
-      useClass: Provider1Adapter,
+      useClass: Provider1AdapterV1,
     },
     {
       provide: PROVIDER_2_KEY,
-      useClass: Provider2Adapter,
+      useClass: Provider2AdapterV1,
     },
     {
       provide: PROVIDER_3_KEY,
-      useClass: Provider3Adapter,
+      useClass: Provider3AdapterV1,
     },
   ],
-  exports: [{ provide: ProductsSyncService, useClass: ProductsSyncServiceImpl }],
+  exports: [{ provide: ProductsSyncServiceV1, useClass: ProductsSyncServiceV1Impl }],
 })
 export class ProductsSyncModule {}

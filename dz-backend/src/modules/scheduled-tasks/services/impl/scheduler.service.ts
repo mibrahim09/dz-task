@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { SchedulerService } from '../scheduler.service';
 import { SchedulerRegistry } from '@nestjs/schedule';
-import { ProductsSyncService } from '../../../products-sync/services/products-sync.service';
+import { ProductsSyncServiceV1 } from '../../../products-sync/services/v1/products-sync-service-v1.service';
 
 @Injectable()
 export class SchedulerServiceImpl extends SchedulerService {
   constructor(
     private readonly scheduler: SchedulerRegistry,
-    private readonly productSyncService: ProductsSyncService,
+    private readonly productSyncService: ProductsSyncServiceV1,
   ) {
     super(scheduler);
-    this.registerTasks();
+    this.registerTasks().catch((e) => {
+      console.error('error occured in register tasks=', e);
+    });
   }
 
   async registerTasks() {

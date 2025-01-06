@@ -1,10 +1,10 @@
-import { ProductAggregatorAdapter } from '../product-aggregator.adapter';
-import { SyncedProduct } from '../../types/synced-product.type';
-import { Provider3ProductType } from '../../types/provider-3-product.type';
+import { ProductAggregatorAdapter } from '../../product-aggregator.adapter';
 import axios, { AxiosInstance } from 'axios';
-import { PROVIDER_3_NAME } from '../../constants/provider';
+import { SyncedProduct } from '../../../types/synced-product.type';
+import { Provider3ProductType } from '../../../types/provider-3-product.type';
+import { PROVIDER_3_NAME } from '../../../constants/provider';
 
-export class Provider3Adapter extends ProductAggregatorAdapter<Provider3ProductType> {
+export class Provider3AdapterV1 extends ProductAggregatorAdapter<Provider3ProductType> {
   private readonly axios: AxiosInstance;
 
   constructor() {
@@ -26,6 +26,7 @@ export class Provider3Adapter extends ProductAggregatorAdapter<Provider3ProductT
       currency: item.prv_currency,
       availability: item.prv_availability,
       lastUpdated: item.lastUpdated,
+      providerName: this.getProviderName(),
     };
   }
 }
