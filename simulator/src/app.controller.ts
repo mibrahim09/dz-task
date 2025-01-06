@@ -23,7 +23,8 @@ export class AppController {
             : new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 2), // random date in the past 2 hrs
       };
     });
-    return _.sampleSize(results, Math.floor(Math.random() * 10));
+    const result = _.sampleSize(results, Math.floor(Math.random() * 10));
+    return result;
   }
 
   @Get('/provider2')
