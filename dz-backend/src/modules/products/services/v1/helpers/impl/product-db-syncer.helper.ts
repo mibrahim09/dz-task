@@ -64,7 +64,6 @@ export class ProductDbSyncerHelperV1Impl extends ProductDbSyncerHelperV1 {
         newValue: item.availability,
       };
     }
-    console.log(Object.keys(updateObject).length);
     if (updateObject.price?.oldValue || updateObject.availability?.oldValue) {
       await this.productUpdatesRepositoryV1.createUpdateLog(oldItem.product.id, updateObject);
     }

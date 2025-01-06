@@ -9,7 +9,7 @@ export class Provider2AdapterV1 extends ProductAggregatorAdapter<Provider2Produc
 
   constructor() {
     super(PROVIDER_2_NAME);
-    this.axios = axios.create({ baseURL: 'http://localhost:3000/provider2' });
+    this.axios = axios.create({ baseURL: process.env.PROVIDER_2_URL });
   }
 
   async syncList(): Promise<SyncedProduct[]> {

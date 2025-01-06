@@ -18,8 +18,16 @@ export class SchedulerServiceImpl extends SchedulerService {
   }
 
   async registerTasks() {
-    this.addCronJob(this.syncProducts.name, '* * * * * *', this.syncProducts.bind(this));
-    this.addCronJob(this.markStaleProducts.name, '* * * * * *', this.markStaleProducts.bind(this));
+    this.addCronJob(
+      this.syncProducts.name,
+      process.env.SYNC_PRODUCTS_CRON ?? '* * * * * *',
+      this.syncProducts.bind(this),
+    );
+    this.addCronJob(
+      this.markStaleProducts.name,
+      process.env.MARK_STALE_PRODUCTS_CRON ?? '* * * * * *',
+      this.markStaleProducts.bind(this),
+    );
   }
 
   private async syncProducts() {
